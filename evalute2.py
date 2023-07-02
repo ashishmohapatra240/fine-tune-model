@@ -28,14 +28,9 @@ total_examples = len(train_data) // 2  # Divide by 2 since we have user and assi
 
 correct_predictions = 0
 
-# print(train_data[0][0])
+user_input="What is Harpoon"
 
-for i in range(0, len(train_data)-1, 2):
-    user_input = train_data[i]["content"]
-    assistant_response = train_data[i+1]["content"]
-
-    # Generate a completion from the model
-    response = openai.Completion.create(
+response = openai.Completion.create(
         engine=model_configuration['engine'],
         prompt=f"User: {user_input}\nAssistant:",
         temperature=model_configuration['temperature'],
@@ -43,16 +38,4 @@ for i in range(0, len(train_data)-1, 2):
         model=model_configuration['model']
     )
 
-    # Get the generated completion
-    generated_response = response.choices[0].text.strip()
-
-    # Compare the generated completion with the assistant's response
-    if generated_response == assistant_response:
-        correct_predictions += 1
-
-# Calculate accuracy
-accuracy = correct_predictions / total_examples
-
-print(f"Training set accuracy: {accuracy}")
-print(f"The generated response is: {generated_response}")
-print(f"The correct predictions are: {correct_predictions}")
+print(response.choices[0].text.strip())

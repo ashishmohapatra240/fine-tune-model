@@ -12,16 +12,13 @@ for line in lines:
     if line.startswith("Max:"):
         if user_lines and character_lines:
             conversation = {
-                "conversation": [
-                    {
-                        "role": "user",
-                        "content": "\n".join(user_lines)
-                    },
-                    {
-                        "role": "character",
-                        "content": "\n".join(character_lines)
-                    }
-                ]
+                "role": "user",
+                "content": " ".join(user_lines)  # Join lines with a space
+            }
+            conversations.append(conversation)
+            conversation = {
+                "role": "character",
+                "content": " ".join(character_lines)  # Join lines with a space
             }
             conversations.append(conversation)
             user_lines = []
@@ -33,16 +30,13 @@ for line in lines:
 # Add the last conversation
 if user_lines and character_lines:
     conversation = {
-        "conversation": [
-            {
-                "role": "user",
-                "content": "\n".join(user_lines)
-            },
-            {
-                "role": "character",
-                "content": "\n".join(character_lines)
-            }
-        ]
+        "role": "user",
+        "content": " ".join(user_lines)  # Join lines with a space
+    }
+    conversations.append(conversation)
+    conversation = {
+        "role": "character",
+        "content": " ".join(character_lines)  # Join lines with a space
     }
     conversations.append(conversation)
 
