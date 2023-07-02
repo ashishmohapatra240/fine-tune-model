@@ -1,8 +1,12 @@
 import openai
 import json
+import os
+from dotenv import load_dotenv
 
+
+load_dotenv('api_key.env')
 # Set your OpenAI API key
-openai.api_key = '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'
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
 # Load the validation conversations from the JSON file
 with open('val_data.json', 'r') as file:
